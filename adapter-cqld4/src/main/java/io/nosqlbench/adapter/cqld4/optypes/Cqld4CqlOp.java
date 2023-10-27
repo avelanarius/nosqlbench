@@ -99,6 +99,10 @@ public abstract class Cqld4CqlOp implements CycleOp<ResultSet>, VariableCapture,
         int pages = 0;
         while (true) {
             int pageRows = rs.getAvailableWithoutFetching();
+            if (pageRows == 0 && !rs.isFullyFetched()) {
+                continue;
+            }
+
             for (int i = 0; i < pageRows; i++) {
                 Row row = reader.next();
                 processors.buffer(row);
