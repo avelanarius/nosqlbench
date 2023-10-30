@@ -100,7 +100,7 @@ public abstract class Cqld4CqlOp implements CycleOp<ResultSet>, VariableCapture,
         while (true) {
             int pageRows = rs.getAvailableWithoutFetching();
             if (pageRows == 0 && !rs.isFullyFetched()) {
-                rs.hasNext(); // it will trigger next (full) page fetch
+                reader.hasNext(); // it will trigger next (full) page fetch
                 continue;
             }
 
